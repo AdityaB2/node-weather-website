@@ -1,11 +1,12 @@
-const express=require('express')
 const path=require('path')
+const express=require('express')
+
 const hbs=require('hbs')
 const geocode=require('./util/geocode')
 const forecast=require('./util/forecast')
 
 const app=express()
-const port=process.env.PORT || 8080
+//const port=process.env.PORT || 8080
 
 //console.log(__dirname)
 
@@ -22,7 +23,7 @@ app.set('views',viewsPath)
 hbs.registerPartials(partialsPath)
 
 
-//etup static directory to serve
+//Setup static directory to serve
 app.use(express.static(publicDirectoryPath))
 // app.get('',(req,res)=>{
 //     res.send('<h1>Weather</h1>')
@@ -43,7 +44,7 @@ app.get('',(req,res)=>{
 })
 
 app.get('/about',(req,res)=>{
-    res.render('about',{
+    res.render('about', {
         title: 'About me',
         name: 'Aditya'
     })
@@ -103,6 +104,19 @@ app.get('/weather', (req, res) => {
 //     res.send('<h1>About</h1>')
 // })
 
+app.get('/products', (req, res) => {
+    if (!req.query.search) {
+        return res.send({
+            error: 'You must provide a search term'
+        })
+    }
+
+    console.log(req.query.search)
+    res.send({
+        products: []
+    })
+})
+
 
 app.get('/help/*',(req,res)=>{
     res.render('404',{
@@ -123,6 +137,6 @@ app.get('*',(req,res)=>{
 
 
 
-app.listen(port,()=>{
-    console.log('Server is running on port '+port)
+app.listen(8080, ()=>{
+    console.log('Server is running on port 8080.')
 })
