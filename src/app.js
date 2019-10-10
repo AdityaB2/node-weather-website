@@ -85,24 +85,9 @@ app.get('/weather', (req, res) => {
     })
 
 
-    // res.send({
-    //     forecast: 'It is snowing',
-    //     location: 'Philadelphia',
-    //     address: req.query.address
-    // })
+    
 })
 
-// app.get('/help',(req,res)=>{
-//     res.send([{
-//         name: 'Aditya'
-//     },
-//     {
-//         name: 'Ranjan'
-//     }])
-// })
-// app.get('/about',(req,res)=>{
-//     res.send('<h1>About</h1>')
-// })
 
 app.get('/products', (req, res) => {
     if (!req.query.search) {
